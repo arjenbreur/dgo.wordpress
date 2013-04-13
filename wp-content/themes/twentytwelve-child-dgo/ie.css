@@ -1,0 +1,25 @@
+
+@import url("../twentytwelve/ie.css");
+
+
+BODY.home ARTICLE.boxcontainer.dgohighlightunseen,
+BODY ARTICLE.boxcontainer.open,
+BODY ARTICLE.boxcontainer.sticky {
+	height: 3.8em !important;
+}
+
+
+HTML BODY DIV ARTICLE.boxcontainer .box .boxface.bottom, 
+HTML BODY DIV ARTICLE.boxcontainer .box .boxface.back, 
+HTML BODY DIV ARTICLE.boxcontainer .box .boxface.top{
+	display:none!important;	
+}
+
+	
+		BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content FORM TEXTAREA{
+		    height:10em;
+		}
+		
+		BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content FORM P.form-submit{
+			height:auto;
+		}

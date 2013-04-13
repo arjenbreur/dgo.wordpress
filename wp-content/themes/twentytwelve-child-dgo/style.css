@@ -1,0 +1,718 @@
+/*
+Theme Name:     Twenty Twelve Child DGO
+Theme URI:      http://dgo.3r13.nl
+Description:    DGO Child theme for the Twenty Twelve theme 
+Author:         Arjen Breur
+Author URI:     http://3r13.nl/
+Template:       twentytwelve
+Version:        0.1.0
+
+This theme, like WordPress, is licensed under the GPL.
+Use it to make something cool, have fun, and share what you've learned with others.
+*/
+
+
+/** This child theme style.css will be used INSTEAD of the parent theme
+ * therefore we include the parent theme style sheets first.
+ */
+@import url("../twentytwelve/style.css");
+
+
+/* BASE LAYOUT */
+
+HTML{
+	font-size:75%;
+}
+
+BODY DIV#page.site{
+    box-shadow: none;
+    background-color: transparent;
+}
+FOOTER[role="contentinfo"] {
+    border:none;
+}
+
+/* ADMIN BAR */
+#wpadminbar #wp-admin-bar-dgohighlightunseen .ab-submenu A.ab-item IMG{
+	display:none;
+}
+
+/* MENU */
+HEADER.site-header {
+    padding-top:0;
+}
+HEADER NAV.main-navigation UL.nav-menu,
+HEADER NAV.main-navigation DIV.nav-menu > UL{
+    border:none;
+}
+HEADER NAV.main-navigation LI.menu-item{
+    background-color:white;
+    padding: 0;
+}
+HEADER NAV.main-navigation LI.menu-item a{
+  line-height: 2em;
+  padding:0 1em;
+}
+
+/* hide main menu */
+BODY HEADER.site-header { 
+	display: none;
+}
+
+/* WIDGETS */
+.widget-area .current-menu-item{
+	font-weight: bold;
+}
+.widget-area ASIDE.widget A {
+	text-decoration: none;
+}
+.widget-area ASIDE.widget h3 {
+	margin-bottom: 1em !important;
+}
+.widget-area ASIDE.widget.widget_pages H3.widget-title {
+	display: none;
+}
+
+    
+/* HOME - re-layout entries in list */
+BODY.archive H1.entry-title, 
+BODY.single H1.entry-title,
+BODY.search H1.entry-title,
+BODY.home H1.entry-title{
+    float:left;
+    font-size:1.4em;
+}
+
+BODY.archive DIV.comments-link,
+BODY.single DIV.comments-link,
+BODY.search DIV.comments-link,
+BODY.home DIV.comments-link{
+    float:right;
+    margin-top:0;
+}
+
+
+/* HIGHLIGHT/FLASH ANIMATION */
+BODY LI.scrollable,
+BODY LI.comment {
+    -webkit-transition: background-color 1s ease 0s;
+       -moz-transition: background-color 1s ease 0s;
+        -ms-transition: background-color 1s ease 0s;
+         -o-transition: background-color 1s ease 0s;
+            transition: background-color 1s ease 0s;
+}
+
+/* OPEN/CLOSE ANIMATION */
+/* article */
+BODY ARTICLE.boxcontainer{
+	cursor: pointer;
+    height:  3.8em !important;
+    width:  100%  !important;
+	margin:   0% 0% 2em 0% !important;
+	font-size: 100% !important;
+	background-color: transparent;
+	background-image: none !important;
+    -webkit-transition: height .3s ease 0s, width .3s ease 0s, margin .3s ease 0s, font-size .3s ease 0s;
+       -moz-transition: height .3s ease 0s, width .3s ease 0s, margin .3s ease 0s, font-size .3s ease 0s;
+        -ms-transition: height .3s ease 0s, width .3s ease 0s, margin .3s ease 0s, font-size .3s ease 0s;
+         -o-transition: height .3s ease 0s, width .3s ease 0s, margin .3s ease 0s, font-size .3s ease 0s;
+            transition: height .3s ease 0s, width .3s ease 0s, margin .3s ease 0s, font-size .3s ease 0s;
+}
+
+BODY.home ARTICLE.boxcontainer.dgohighlightunseen,
+BODY ARTICLE.boxcontainer.open{
+    width:  104%  !important;
+	margin:   0em -1.5% 2em -1.5% !important;
+	font-size: 104.5% !important;
+}
+BODY.home ARTICLE.boxcontainer.dgohighlightunseen,
+BODY ARTICLE.boxcontainer.open,
+BODY ARTICLE.boxcontainer.sticky{
+    height: 14em !important; /* 200px also change other BOX marked properties! */
+}
+
+/* boxface */
+BODY ARTICLE .box .boxface{
+	box-shadow: 0px 0px 0px rgba(100, 100, 100, 0.3);
+	-webkit-transition: box-shadow .3s ease 0s;
+	   -moz-transition: box-shadow .3s ease 0s;
+	    -ms-transition: box-shadow .3s ease 0s;
+	     -o-transition: box-shadow .3s ease 0s;
+            transition: box-shadow .3s ease 0s;
+}
+BODY.home ARTICLE.dgohighlightunseen .box .boxface,
+BODY ARTICLE.open .box .boxface{
+	box-shadow: 8px 8px 24px rgba(100, 100, 100, 0.2);
+}
+/* */
+
+
+/* BOX ANIMATION */
+
+ARTICLE.boxcontainer {
+      width: 100%;
+      height: 14em; /* 200px also change other BOX marked properties! */
+      position: relative;
+      margin: 0 auto 40px;
+      border: none;
+      padding: 0 !important;
+      -webkit-perspective: 1200px;
+         -moz-perspective: 1200px;
+          -ms-perspective: 1200px;
+           -o-perspective: 1200px;
+              perspective: 1200px;
+    }
+
+    .box {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      
+      -webkit-transform-origin: 0 50% -7em; /* -100px also change other BOX marked properties! */
+         -moz-transform-origin: 0 50% -7em;
+          -ms-transform-origin: 0 50% -7em;
+           -o-transform-origin: 0 50% -7em;
+              transform-origin: 0 50% -7em;
+      -webkit-transform-style: preserve-3d;
+         -moz-transform-style: preserve-3d;
+          -ms-transform-style: preserve-3d;
+           -o-transform-style: preserve-3d;
+              transform-style: preserve-3d;
+      -webkit-transition: -webkit-transform .3s ease-out;
+         -moz-transition:    -moz-transform .3s ease-out;
+          -ms-transition:     -ms-transform .3s ease-out;
+           -o-transition:      -o-transform .3s ease-out;
+              transition:         transform .3s ease-out;
+    
+    }
+
+    .box > .boxface {
+        display: block;
+        position: absolute;
+        overflow: hidden;
+        -webkit-backface-visibility: hidden;
+           -moz-backface-visibility: hidden;
+             -o-backface-visibility: hidden;
+                backface-visibility: hidden;
+        -webkit-box-sizing:border-box;
+           -moz-box-sizing:border-box;
+            -ms-box-sizing:border-box;
+             -o-box-sizing:border-box;
+                box-sizing:border-box;
+        padding: 1em;
+    }
+    ARTICLE.dgoforumtopic .box > .boxface {
+    	padding-right:0; /* needed for fade overflow effect */
+    	-webkit-backface-visibility: hidden;
+  		   -moz-backface-visibility: hidden;
+  		    -ms-backface-visibility: hidden;
+    }
+    .box .boxface.front,
+    .box .boxface.back {
+      width: 100%;
+      height: 100%;
+    }
+
+    .box .boxface.top,
+    .box .boxface.bottom {
+      width: 100%;
+      height: 100%;
+      top: 25%;
+    }
+
+    .box .boxface.front  {
+      -webkit-transform: translateZ( 0em ); /* 100px also change other BOX marked properties! */
+         -moz-transform: translateZ( 0em ); 
+           -o-transform: translateZ( 0em );
+              transform: translateZ( 0em );
+    }
+    .box .boxface.top {
+      -webkit-transform: rotateX(   90deg ) translateZ( 10.5em ) translateY(-7em); /* 150px also change other BOX marked properties! */
+         -moz-transform: rotateX(   90deg ) translateZ( 10.5em ) translateY(-7em);
+           -o-transform: rotateX(   90deg ) translateZ( 10.5em ) translateY(-7em);
+              transform: rotateX(   90deg ) translateZ( 10.5em ) translateY(-7em); 
+    }
+    .box .boxface.back   {
+      -webkit-transform: rotateX( 180deg ) translateZ(  14em );  /* weird bug, webkit needs different value */
+         -moz-transform: rotateX( 180deg ) translateZ(  14em ); /* 200px also change other BOX marked properties! */
+           -o-transform: rotateX( 180deg ) translateZ(  14em );
+              transform: rotateX( 180deg ) translateZ(  14em ); 
+    }
+    .box .boxface.bottom {
+      -webkit-transform: rotateX(  270deg ) translateZ( 3.5em ) translateY(7em); /* 50px also change other BOX marked properties! */
+         -moz-transform: rotateX(  270deg ) translateZ( 3.5em ) translateY(7em);
+           -o-transform: rotateX(  270deg ) translateZ( 3.5em ) translateY(7em);
+              transform: rotateX(  270deg ) translateZ( 3.5em ) translateY(7em);
+    }
+
+
+    ARTICLE .show-front {
+      -webkit-transform: translateZ(  0em );
+         -moz-transform: translateZ(  0em );
+           -o-transform: translateZ(  0em );
+              transform: translateZ(  0em );
+    }
+    ARTICLE .show-top {
+      -webkit-transform: translateZ( 0em ) rotateX(  -90deg );
+         -moz-transform: translateZ( 0em ) rotateX(  -90deg );
+           -o-transform: translateZ( 0em ) rotateX(  -90deg );
+              transform: translateZ( 0em ) rotateX(  -90deg );
+    }
+    ARTICLE .show-back {
+      -webkit-transform: translateZ( 0em ) rotateX( -180deg );
+         -moz-transform: translateZ( 0em ) rotateX( -180deg );
+           -o-transform: translateZ( 0em ) rotateX( -180deg );
+              transform: translateZ( 0em ) rotateX( -180deg );
+    }
+    ARTICLE .show-bottom {
+      -webkit-transform: translateZ( 0em ) rotateX(  -270deg );
+         -moz-transform: translateZ( 0em ) rotateX(  -270deg );
+           -o-transform: translateZ( 0em ) rotateX(  -270deg );
+              transform: translateZ( 0em ) rotateX(  -270deg );
+    }
+
+	/* hide back of cube, to fix backface invisibility bug on winXP Chrome * /
+    ARTICLE .show-front  .boxface.back,
+    ARTICLE .show-top    .boxface.bottom,
+    ARTICLE .show-back   .boxface.front,
+    ARTICLE .show-bottom .boxface.top{
+		display:none;
+	}
+	/* */
+    
+
+/* end box animation */
+
+
+ARTICLE .boxface H3 {
+    margin: 0 0 1em 0;
+    font-size:1em;
+}
+
+BODY HEADER.entry-header{
+    margin-bottom:1em;
+    height: 1.8em;
+    line-height:1.8em;
+}
+BODY ARTICLE.no-result HEADER.entry-header,
+BODY ARTICLE.not-found HEADER.entry-header{
+    display:inline-block;
+}
+
+
+BODY DIV.entry-content{
+    margin-left:2.24rem;
+    clear:both;
+    min-height: 4em;
+    margin-left: 0em;
+}
+
+BODY DIV.entry-content > ul {
+    list-style: none outside none;
+    margin-left: 0;
+    padding-left: 0;
+    overflow: hidden;
+}
+
+BODY DIV.entry-content > UL > LI {
+    margin: 0;
+	overflow:hidden;
+    padding: 0;
+    position: relative;
+    white-space: nowrap;
+  
+	line-height:1.7em;
+	
+	-webkit-transition:all .3s ease 0s;
+	   -moz-transition:all .3s ease 0s;
+	    -ms-transition:all .3s ease 0s;
+	     -o-transition:all .3s ease 0s;
+	        transition:all .3s ease 0s;
+}
+BODY DIV.entry-content > UL > LI.writecomment{
+	/* margin: 2px 0 -2px 0 ; /* prevent jump on submit */
+	max-height:2em;
+}
+	BODY DIV.entry-content > UL > LI.writecomment FORM, 
+	BODY DIV.entry-content > UL > LI.writecomment FORM DIV.comment-ajax-status{
+		display:inline;
+	}
+
+BODY.archive DIV.entry-content > UL > LI.hidden,
+BODY.search DIV.entry-content > UL > LI.hidden,
+BODY DIV.entry-content > UL > LI.hidden{
+	max-height:0em;
+}
+
+BODY DIV.entry-content > UL > LI > SPAN{
+
+}
+	BODY DIV.entry-content > UL > LI > SPAN.avatar{
+	    display:inline-block;
+		margin-right: 0.5em;
+	    border-radius:3px;
+	}
+		BODY DIV.entry-content > UL > LI > SPAN.avatar IMG.avatar{
+		    display: inline-block;
+		    vertical-align: text-top;
+		    box-shadow:none;
+		}
+
+	BODY DIV.entry-content > UL > LI > SPAN.author,
+	BODY DIV.entry-content > UL > LI > SPAN.timestamp{
+		font-size:75%;
+	    display:inline-block;
+	}
+	BODY DIV.entry-content > UL > LI > SPAN.timestamp{
+	    width:2.2em;
+	}
+	BODY DIV.entry-content > UL > LI > SPAN.author{
+	    min-width:5em;
+	}
+	BODY DIV.entry-content > UL > LI > SPAN.author:after{
+	    content: ':';
+	}
+	BODY DIV.entry-content > UL > LI > SPAN INPUT[type=text]{
+	
+	    background-color: white;
+	    font-size: 1em !important;
+	    height: 1em;
+	    height: -webkit-calc(100% - 0.4em);
+	    height:         calc(100% - 0.4em);
+	    margin: 0px -2px 0px -2px;
+	    padding: 0;
+	
+	    width: 80%;
+	    width: -webkit-calc(100% - 6em);
+	    width:         calc(100% - 6em);
+	
+	    -webkit-box-sizing:border-box;
+	       -moz-box-sizing:border-box;
+	            box-sizing:border-box;
+	
+	}
+	BODY DIV.entry-content > UL > LI > SPAN.excerpt IMG{
+		vertical-align: text-bottom;
+		border-radius: 0;
+		box-shadow: none;
+	}	
+		BODY DIV.entry-content > UL > LI > SPAN.excerpt FORM P.ajax-error{
+			display:inline;
+		}	
+
+BODY DIV.entry-content > UL > LI.scrollable{
+	margin-left:0%;
+	-webkit-transition:height .3s ease 0s, margin-left 1s ease-out .5s;
+	   -moz-transition:height .3s ease 0s, margin-left 1s ease-out .5s;
+	    -ms-transition:height .3s ease 0s, margin-left 1s ease-out .5s;
+	     -o-transition:height .3s ease 0s, margin-left 1s ease-out .5s;
+	        transition:height .3s ease 0s, margin-left 1s ease-out .5s;
+}
+
+BODY DIV.entry-content > UL > LI.scrollable.scroll{
+	margin-left:-300%;
+	-webkit-transition:height .3s ease 0s, margin-left 15s ease-in .5s;
+	   -moz-transition:height .3s ease 0s, margin-left 15s ease-in .5s;
+	    -ms-transition:height .3s ease 0s, margin-left 15s ease-in .5s;
+	     -o-transition:height .3s ease 0s, margin-left 15s ease-in .5s;
+	        transition:height .3s ease 0s, margin-left 15s ease-in .5s;
+}
+
+BODY DIV.entry-content > UL > LI > SPAN.more{
+    position: absolute;
+    right: 0;
+    display: inline-block;
+    width:3em;
+    background-color: transparent;
+    cursor: w-resize;
+}
+BODY P.excerpt_new_posts {
+    float: right;
+    margin: -1.5em 0 0;
+    padding: 0;
+}
+
+
+BODY .boxface .uam_access_groups UL.uam_group_selection{
+	font-size: 80%;
+}
+	BODY .boxface .uam_access_groups UL.uam_group_selection LI {
+		float: left;
+		clear: left; /* will be overwritten for li's of the same class, to make items of a different class wrap to a new line */
+	    margin-right: .5em;
+	    overflow: hidden;
+	    white-space: nowrap;
+	    min-width:7.2em;
+		text-transform: lowercase;
+		line-height: 1.8em;
+	}
+	BODY .boxface .uam_access_groups UL.uam_group_selection LI.dgo-group{
+		text-transform: uppercase;
+	}
+
+	BODY .boxface .uam_access_groups UL.uam_group_selection LI.dgo-single-user-group ~ LI.dgo-single-user-group,
+	BODY .boxface .uam_access_groups UL.uam_group_selection LI.dgo-group ~ LI.dgo-group {
+		clear:none; /* make two items of the same class NOT wrap, but if following class is different DO wrap */
+	}
+	BODY .boxface .uam_access_groups UL.uam_group_selection LI.hasaccess {
+	}
+	BODY .boxface .uam_access_groups UL.uam_group_selection LI.seen {
+		/* dont show if a user has seen this post
+		font-weight: bold;
+		*/
+		cursor:text;
+	}
+
+ARTICLE.dgoforumtopic .boxface DL{
+	margin:0;
+}
+	ARTICLE.dgoforumtopic .boxface DL DT,
+	ARTICLE.dgoforumtopic .boxface DL DD{
+	    float: left;
+	    line-height: 1.5em;
+	    min-width: 7em;
+	    margin:0;
+	    font-weight:normal;
+	}
+	ARTICLE.dgoforumtopic .boxface DL DT{
+		clear:left;
+	}
+	ARTICLE.dgoforumtopic .boxface DL DD {
+	    margin-left: 1em;
+	}
+	
+ARTICLE.dgoquote .boxface .entry-content {
+	padding-top: 1em;
+	overflow: hidden; /* clearfix alternative */
+	font-size: 1.15em;
+	line-height: 100%;
+}
+	ARTICLE.dgoquote .boxface .entry-content P {
+		margin:0;
+	}
+	ARTICLE.dgoquote .boxface .entry-content:before,
+	ARTICLE.dgoquote .boxface .entry-content:after{
+		display: block;
+		float: left;
+		margin: 10px 15px 0 0;
+		font-size: 4em;
+		content: open-quote; 
+		color: #bbb;
+	}
+	ARTICLE.dgoquote .boxface .entry-content:after {
+		content: close-quote;
+		float:right;
+	}
+ 
+
+
+/* SINGLE */
+BODY ARTICLE.page,
+BODY.single-post ARTICLE.post-content {
+	padding:2em;
+}
+BODY ARTICLE.page,
+BODY.single-post ARTICLE.post-content {
+	margin-top: calc(-2em + 1px);
+    padding-top: 2em;
+}
+/* */
+
+/* COMMENTS */
+/* dont display the topic starter badge */
+BODY .comments-area LI.bypostauthor CITE SPAN {
+    display:none;
+}
+
+BODY .comments-area ARTICLE.comment {
+    margin: 0 0 2em;
+    padding: 0;
+}
+	BODY .comments-area ARTICLE.comment > * {
+	    -webkit-box-sizing:border-box;
+	       -moz-box-sizing:border-box;
+	        -ms-box-sizing:border-box;
+	         -o-box-sizing:border-box;
+	            box-sizing:border-box;
+	    margin: 0;
+	    display:table-cell;
+   		vertical-align:top;
+	    background-image:inherit;
+	}
+	BODY .comments-area ARTICLE.comment HEADER {
+	    background-color:transparent;
+	    width: 66px;
+	    border-radius:inherit;   
+	    border-right:inherit; 
+	}
+		BODY .comments-area ARTICLE.comment HEADER IMG.avatar{
+			/* width:100%;/*  */	
+		    height: 66px;
+		    width: 66px;
+		   	box-shadow:none;
+		    margin-bottom:.5em;
+	    	-webkit-transition:height .3s ease 0s, width .3s ease 0s;
+			   -moz-transition:height .3s ease 0s, width .3s ease 0s;
+			    -ms-transition:height .3s ease 0s, width .3s ease 0s;
+			     -o-transition:height .3s ease 0s, width .3s ease 0s;
+			        transition:height .3s ease 0s, width .3s ease 0s;
+		}
+		BODY .comments-area ARTICLE.comment HEADER TIME,
+		BODY .comments-area ARTICLE.comment HEADER CITE{
+			margin:.7em;
+			clear:left;
+			font-size:.7em;
+	    	line-height:1.4em;
+	    	-webkit-transition:font-size .3s ease 0s;
+			   -moz-transition:font-size .3s ease 0s;
+			    -ms-transition:font-size .3s ease 0s;
+			     -o-transition:font-size .3s ease 0s;
+			        transition:font-size .3s ease 0s;
+		}
+	BODY .comments-area ARTICLE P.comment-awaiting-moderation {
+	    padding: 0.5em;
+	    width: 10%;
+	    font-size:75%;
+	}
+		
+	BODY .comments-area ARTICLE SECTION.comment-content {
+	    padding: 1em;
+	    width: 100%;
+	    border:none;
+    	-webkit-transition:padding .3s;
+		   -moz-transition:padding .3s;
+		    -ms-transition:padding .3s;
+		     -o-transition:padding .3s;
+		        transition:padding .3s;
+	}
+	BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content {
+		padding:0;
+	}	
+
+		BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content FORM > P{
+			margin:0;
+			height: 1.2em;
+		}		
+
+		BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content FORM > P,
+		BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content FORM DIV.wp-editor-tools,
+		BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content FORM DIV.quicktags-toolbar,
+		BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content FORM TEXTAREA{
+  	    	-webkit-transition:height .3s;
+			   -moz-transition:height .3s;
+			    -ms-transition:height .3s;
+			     -o-transition:height .3s;
+			        transition:heightz .3s;
+		}	
+		
+
+		BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content FORM TEXTAREA{
+		    border-radius:5px;
+		    font-size:1em;
+		    height:10em;
+		}
+
+		BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content FORM p.dgoemoticons{
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			    -mz-box-sizing: border-box;
+			     -o-box-sizing: border-box;
+			        box-sizing: border-box;
+		    float: left;
+		    margin-right: -9em;  /* width of button on the right */
+		    padding-right: 9em;  /* width of button on the right */
+		    height: auto;
+		    max-height: 7.5em;
+		    overflow: hidden;
+		    transition: max-height 0.3s ease 0s;
+		    width: 100%;
+
+   	    	-webkit-transition:max-height .3s;
+			   -moz-transition:max-height .3s;
+			    -ms-transition:max-height .3s;
+			     -o-transition:max-height .3s;
+			        transition:max-height .3s;
+		}
+		
+		BODY .comments-area ARTICLE.dgocommentform SECTION.comment-content FORM P.form-submit{
+			float: right;
+			text-align:right;
+			overflow:hidden;
+			height:2.5em;
+			width:9em; /*set padding and margin of container to the left accordingly */
+
+		}
+		
+
+		
+		
+		
+/* COMMENT FORM CLOSED */			
+BODY .comments-area ARTICLE.dgocommentform.closed HEADER{
+	border-radius:5px 0 0 0;
+
+}	
+	BODY .comments-area ARTICLE.dgocommentform.closed HEADER IMG.avatar{
+		width:2.1em;
+		height:2.1em;
+		float:left;
+		margin:0;
+		display:block;
+	}	
+	BODY .comments-area ARTICLE.dgocommentform.closed HEADER TIME,
+	BODY .comments-area ARTICLE.dgocommentform.closed HEADER CITE {
+	    font-size:0;
+	}
+	BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content{
+	    padding:0.2em;
+	}
+	
+		BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content FORM > P,
+		BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content FORM DIV.wp-editor-tools,
+		BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content FORM DIV.quicktags-toolbar{
+			height: 0em;
+			min-height:0;
+			overflow:hidden;
+			border:none;
+			padding:0;
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			    -mz-box-sizing: border-box;
+			     -o-box-sizing: border-box;
+			        box-sizing: border-box;
+			
+		}	
+		BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content FORM p.dgoemoticons{
+			max-height:0;
+		}
+		BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content FORM TEXTAREA{
+		    height:1.53em;
+		    padding:.15em;
+		    line-height:1.53em;
+		    border-radius:0px 4px 4px 0px;
+		    resize:none;
+		}
+		BODY .comments-area ARTICLE.dgocommentform.closed SECTION.comment-content FORM P.form-submit{
+			height:0em;
+		}
+		
+		
+		
+/* SIDEBAR WIDGETS */
+/* current browser definition list */
+ASIDE DL#currentbrowser{
+}
+	ASIDE DL#currentbrowser dt {
+	    float: left;
+	    clear: left;
+	    width: 75px;
+	    font-weight: bold;
+	}
+	ASIDE DL#currentbrowser dt:after {
+	    content: ":";
+	}
+	ASIDE DL#currentbrowser dd {
+	    margin: 0 0 0 80px;
+	    padding: 0 0 0.5em 0;
+	}
+		

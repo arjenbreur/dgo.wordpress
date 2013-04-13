@@ -1,0 +1,29 @@
+/*
+CSS for the Dashboard Tweaks Plugin
+*/
+
+/* Replace WordPress logo top left corner toolbar with custom logo (maximum height of image: 28px) */
+#wpadminbar ul li#wp-admin-bar-wp-logo {background: url("../images/adminbar-logo.png") no-repeat 0 0 #464646;width: 28px;height:28px;}
+
+/* And keep the logo while hovering (changed in WordPress Version 3.3-RC1) */
+#wpadminbar .ab-top-menu > li#wp-admin-bar-wp-logo:hover > .ab-item, #wpadminbar .ab-top-menu > li#wp-admin-bar-wp-logo.hover > .ab-item, #wpadminbar .ab-top-menu > li#wp-admin-bar-wp-logo > .ab-item:focus {
+    background-color: #464646;
+    background-image: url("../images/adminbar-logo.png") !important;
+}
+
+/* Remove icons in front of Dashboard menus */
+.wp-admin .icon32 {display:none;}
+
+/* Reduce Page Heading Size */
+.wrap h2 {font-size: 22px;line-height: 28px;padding: 9px 15px 2px 0;}
+
+/* Remove publish icon of Add new Post/Page screens */
+.curtime #timestamp {background-image: none;}
+.curtime #timestamp {background-position: left top;background-repeat: no-repeat;padding-left: 0;}
+
+/* Add colored background to activated plugins to add contrast */
+#the-list .active {background-color:#EAF2FA;}
+
+/* Add colored background to sidebar active sub-menu to add contrast */
+#adminmenu .wp-submenu li.current {background-color:#21759B;}
+#adminmenu .wp-submenu li.current a {color:#fff}

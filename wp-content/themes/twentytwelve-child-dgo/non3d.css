@@ -1,0 +1,121 @@
+
+BODY{
+	border-right:4px solid pink !important;
+}
+
+
+/* BOX ANIMATION */
+/* remove all 3d transformations */
+
+ARTICLE.boxcontainer {
+      -webkit-perspective: initial;
+         -moz-perspective: initial;
+          -ms-perspective: initial;
+           -o-perspective: initial;
+              perspective: initial;
+    }
+
+    .box {
+      -webkit-transform-origin: initial;
+         -moz-transform-origin: initial;
+          -ms-transform-origin: initial;
+           -o-transform-origin: initial;
+              transform-origin: initial;
+      -webkit-transform-style: initial;
+         -moz-transform-style: initial;
+          -ms-transform-style: initial;
+           -o-transform-style: initial;
+              transform-style: initial;
+      -webkit-transition: initial;
+         -moz-transition: initial;
+          -ms-transition: initial;
+           -o-transition: initial;
+              transition: initial;
+    }
+    
+    .box .boxface.top,
+    .box .boxface.bottom {
+      top: 0;
+    }
+
+
+    .box .boxface.front  {
+      -webkit-transform: initial;
+         -moz-transform: initial; 
+           -o-transform: initial;
+              transform: initial;
+    }
+    .box .boxface.top {
+      -webkit-transform: initial;
+         -moz-transform: initial;
+           -o-transform: initial;
+              transform: initial; 
+	}
+    .box .boxface.back   {
+      -webkit-transform: initial;
+         -moz-transform: initial;
+           -o-transform: initial;
+              transform: initial; 
+	}
+    .box .boxface.bottom {
+      -webkit-transform: initial;
+         -moz-transform: initial;
+           -o-transform: initial;
+              transform: initial;
+	}
+
+
+    ARTICLE .show-front {
+      -webkit-transform: initial;
+         -moz-transform: initial;
+           -o-transform: initial;
+              transform: initial;
+	}
+    ARTICLE .show-top {
+      -webkit-transform: initial;
+         -moz-transform: initial;
+           -o-transform: initial;
+              transform: initial;
+	}
+    ARTICLE .show-back {
+      -webkit-transform: initial;
+         -moz-transform: initial;
+           -o-transform: initial;
+              transform: initial;
+	}
+    ARTICLE .show-bottom {
+      -webkit-transform: initial;
+         -moz-transform: initial;
+           -o-transform: initial;
+              transform: initial;
+	}
+
+	/* hide all faces except the face to show */
+    ARTICLE .show-front  .boxface.top,
+    ARTICLE .show-front  .boxface.back,
+    ARTICLE .show-front  .boxface.bottom,
+    ARTICLE .show-top    .boxface.back,
+    ARTICLE .show-top    .boxface.bottom,
+    ARTICLE .show-top    .boxface.front,
+    ARTICLE .show-back   .boxface.bottom,
+    ARTICLE .show-back   .boxface.front,
+    ARTICLE .show-back   .boxface.top,
+    ARTICLE .show-bottom .boxface.front,
+    ARTICLE .show-bottom .boxface.top,
+    ARTICLE .show-bottom .boxface.back{
+		display:none;
+		/* should be changed to opacity, and timed not to hapen right away: http://jsfiddle.net/TeXTQ/*/
+	}
+	/* */
+/* end box animation */
+
+/* fix some stuff now that we dont have 3d transformations */
+BODY ARTICLE.boxcontainer {
+	margin-bottom:2em !important;	
+}
+
+BODY.home ARTICLE.boxcontainer.dgohighlightunseen,
+BODY ARTICLE.boxcontainer.open {
+	margin: 1em -1.5% 1em -1.5% !important;
+}
+

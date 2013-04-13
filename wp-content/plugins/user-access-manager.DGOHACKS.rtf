@@ -1,0 +1,186 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fmodern\fcharset0 Courier;\f2\fnil\fcharset0 Georgia;
+}
+{\colortbl;\red255\green255\blue255;\red0\green116\blue0;\red196\green26\blue22;\red170\green13\blue145;
+\red28\green0\blue207;\red109\green109\blue109;\red213\green233\blue255;\red18\green139\blue4;\red0\green0\blue255;
+\red43\green139\blue39;\red133\green0\blue4;\red0\green0\blue117;\red110\green100\blue69;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww28600\viewh14880\viewkind0
+\deftab674
+\pard\tx674\pardeftab674\pardirnatural
+
+\f0\fs28 \cf2 \CocoaLigature0 User Access Manager Plugin Hack:\
+\
+\
+## USERS CAN SELECT ALL GROUPS\
+To have the UAM plugin make all groups visible and selectable to all users (on the post edit screen), make the following changes to the plugin:\
+\
+File: UamAccessHandler.class.php\
+Replace: "$filter = true" => "$filter = false"\
+\
+This should be 2 occurrences:\
+\
+1: public function getUserGroupsForObject($objectType, $objectId, $filter = true)\
+\
+2: public function getUserGroups($userGroupId = null, $filter = true)\
+\
+\
+## ORDER GROUPS BY NAME\
+File: UamAccessHandlers.class.php\
+Replace: "\cf0 ORDER BY ID" => "ORDER BY groupname ASC\cf3 ";\cf2 \
+This should be 1 occurrence in function \cf0 getUserGroups\cf2 \
+\
+\
+\
+## REMOVE "INFO" LINK FROM GROUP LIST ITEM\
+File: groupSelectionForm.php\
+Remove:\
+\cf0 <a \cf4 class\cf0 =\cf3 "uam_group_info_link"\cf0 >(\cf4 <?php\cf0  \cf4 echo\cf0  TXT_UAM_INFO; \cf4 ?>\cf0 )</a>\
+\cf4 <?php\cf0  include \cf5 'groupInfo.php'\cf0 ; \cf4 ?>\
+\
+\
+## ADD SEPARATE CSS CLASS FOR REAL GROUPS AND SINGLE USER GROUPS\
+File: groupSelectionForm.php\
+\cf0 Replace: <li> => <li \cf4 class\cf0 =\cf3 "<?php echo \cf0 (substr($uamUserGroup->getGroupName(), \cf5 0\cf0 , \cf5 1\cf0 )==\cf5 '_'\cf0 )? \cf5 'dgo-group'\cf0 :\cf5 'dgo-single-user-group'\cf3 ;?>"\cf0  >\cf4 \
+\
+\
+\
+## CHANGE STYLE OF GROUP SELECT LIST\
+File: uamAdmin.css\
+Add:\
+\cf0 #uma_post_access UL.uam_group_selection\{\
+    overflow:hidden; /* prevent collapse due to floating content */\
+\}\
+#uma_post_access UL.uam_group_selection LI\{\
+    float: left;\
+    margin-right: 1em;\
+    width: 14em;\
+    overflow: hidden;\
+    white-space: nowrap;\
+\}\
+#uma_post_access UL.uam_group_selection LI.dgo-group\{\
+    font-weight:bold;\
+    clear:left;\
+\}\
+#uma_post_access UL.uam_group_selection LI.dgo-group ~ .dgo-group \{\
+    /* styles of the others (must cancel the styles of the first rule) */\
+    clear:none;\
+\}\cf4 \
+\
+\
+## AUTO SELECT AND DISABLE CURRENT USERS GROUP\
+File: groupSelectionForm.php\
+\
+Change to:\
+\
+global\cf0  $current_user;\
+wp_get_current_user();\
+\
+\cf4 foreach\cf0  ($uamUserGroups \cf4 as\cf0  $uamUserGroup) \{\
+    $addition = \cf5 ''\cf0 ;\
+    $attributes = \cf5 ''\cf0 ;\
+    \
+    \cf2 // select group if it has only one user and that user is the current user\cf0 \
+    $is_current_user = false;\
+    $uam_group_users = $uamUserGroup->getFullUsers();\
+    \cf4 if\cf0 (count($uam_group_users)==\cf5 1\cf0 )\{\
+        $single_user = array_pop($uam_group_users);\
+        $is_current_user = ( $current_user->ID == $single_user->id ) ? true:false;\
+    \}\
+    \cf4 if\cf0  ($is_current_user ) \{\
+        $attributes \cf4 .\cf0 = \cf5 'disabled="disabled" '\cf0 ;\
+    \}\
+    \cf4 if\cf0  ($is_current_user || array_key_exists($uamUserGroup->getId(), $userGroupsForObject) ) \{\
+        $attributes \cf4 .\cf0 = \cf5 'checked="checked" '\cf0 ;\
+    \}\
+[etc]\
+\
+\
+## HIDE RESTRICTED COMMENTS ON THE COMMENT EDIT PAGE\
+Page: user-access-manager.php\
+Replace:\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth720\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth12480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl320\qr
+
+\f1\fs24 \cf6 \cb7 \CocoaLigature1 \cell 
+\pard\intbl\itap1\pardeftab720\sl320
+\cf0 \cb1 add_filter\cf8 (\cf9 'coments_array'\cf10 ,\cf0  \cf11 array\cf8 (\cf10 &\cf12 $userAccessManager\cf10 ,\cf0  \cf9 'showComment'\cf8 ))\cf10 ;\cf0 \cell \lastrow\row
+\pard\pardeftab720\sl520
+
+\f2 \cf13 to\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth720\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth12480\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl0 \clpadr0 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sl320\qr
+
+\f1 \cf6 \cb7 \cell 
+\pard\intbl\itap1\pardeftab720\sl320
+\cf0 \cb1 add_filter\cf8 (\cf9 'the_comments'\cf10 ,\cf0  \cf11 array\cf8 (\cf10 &\cf12 $userAccessManager\cf10 ,\cf0  \cf9 'showComment'\cf8 ))\cf10 ;\cf0 \
+\
+\
+\
+\cell \lastrow\row
+\pard\tx674\pardeftab674\pardirnatural
+
+\f0\fs28 \cf0 \CocoaLigature0 ## REPLACE instead of INSERT, TO PREVENT MQSQL ERRORS \
+Page: UserAccessManager.class.php\
+Replace:  '$sql = \cf3 "INSERT INTO "\cf4 .'  =>  '\cf0 $sql = \cf3 "REPLACE INTO "\cf4 .'\
+Should be one occurrence in function _\cf0 updateUam()\
+\
+Page: UamUserGroup.class.php\
+Replace: '$sql = \cf3 "INSERT INTO "\cf0 .DB_ACCESSGROUP_TO_OBJECT\cf4 .\cf3 " ('  => '\cf0 $sql = \cf3 "REPLACE INTO "\cf0 .DB_ACCESSGROUP_TO_OBJECT\cf4 .\cf3 " ('\
+Should be one occurrence in function \cf0 _getSqlQuery()\
+\
+\
+\
+\
+## TO BE SURE PAGINATION WORKS, APPLY THESE PATCHES, AND FOLLOW THE INSCTRUCTIONS IN THE COMMENTS\
+\
+## ADD THE NEXT METHOD TO class/UamAccessHandler.class.php\
+    /**\
+     * ADDED FOR DGO\
+     * Fix to make pagination work\
+     * The posts a user is not allowed to see, should be filtered out WHEN the posts are selected from the database\
+     * And not as late as showing them on the screen, that results in empty screens if the user is not allowed any.\
+     * This addition makes that work, but only in combination with the following hack:\
+     * In method class/UamAccessHandler.class.php->getPostsForUser(), change the next code to alter the query:\
+     	// REMOVED:\
+     	//         $postAssignedToUserSql = "\
+		//         	 SELECT igp.object_id  \
+		//         	 FROM ".DB_ACCESSGROUP_TO_OBJECT." AS igp \
+		//         	 WHERE igp.object_type = 'post' \
+		//          AND igp.group_id IN (".$userUserGroupString.")";\
+        // ADDED:\
+        $postableTypes = $this->getPostableTypes();\
+        $postableTypesString = "'".implode("','", $postableTypes)."'";\
+        $postAssignedToUserSql = "\
+        	 SELECT igp.object_id\
+        	 FROM ".DB_ACCESSGROUP_TO_OBJECT." AS igp\
+        	 WHERE igp.object_type IN ( ".$postableTypesString." )\
+         AND igp.group_id IN (".$userUserGroupString.")";\
+	 *         \
+     * NB! Add the next line to user-access-manager.php:341, to invoke this action\
+        // ADDED FOR DGO\
+	    add_filter('pre_get_posts', array(&$userAccessManager, 'DGO_pre_get_posts'));\
+     * \
+     * @param arrray $query The query object\
+     * \
+     * @return void, $query is passed by refecence\
+     */\
+	function DGO_pre_get_posts( $query ) \{\
+	    if ( is_admin() || ! $query->is_main_query() )\
+	        return;\
+	    \
+        $uamAccessHandler = &$this->getAccessHandler();\
+\
+		$usersPosts = $uamAccessHandler->getPostsForUser();\
+		$query->query_vars['post__in'] = array_merge(\
+			$query->query_vars['post__in'],\
+			$usersPosts\
+		);\
+		return;\
+	\}    \
+	}

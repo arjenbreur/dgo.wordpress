@@ -1,0 +1,23 @@
+/* SHOW ICON AND BALLOON IN ADMIN BAR*/
+#wpadminbar UL LI#wp-admin-bar-dgohighlightunseen > A.ab-item{
+	min-width: 55px;
+	background-image: url(/wp-content/plugins/dgo-highlight-unseen/dgo-icon-white.png);
+	background-repeat:no-repeat;
+	background-attachment:scroll;
+	background-position:left;
+	margin-left:-1px; /* fix 1px black border problem*/
+}
+#wpadminbar UL LI#wp-admin-bar-dgohighlightunseen.hover > A.ab-item{
+	background-image: url(/wp-content/plugins/dgo-highlight-unseen/dgo-icon-black.png); 
+}
+
+#wpadminbar UL LI#wp-admin-bar-dgohighlightunseen A.ab-item SPAN#dgohighlightunseen-adminbar-count{
+	display:inline-block;
+	background-image: url(/wp-content/plugins/dgo-highlight-unseen/dgo-balloon.png);
+	background-repeat:no-repeat;
+	background-attachment:scroll;
+	background-position:left;
+	margin:0 0 0 16px; 
+	width:20px;
+	padding-left:19px; /*needed to position text in middel of balloon*/ 
+}
